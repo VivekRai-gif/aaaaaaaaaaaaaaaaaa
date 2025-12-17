@@ -175,3 +175,26 @@ showMessage = function(message, type) {
     responseMessage.dataset.displayTime = Date.now();
   }
 };
+
+/**
+ * Scroll to Top Button Functionality
+ */
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+// Show/hide scroll button based on scroll position
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+// Scroll to top when button is clicked
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+

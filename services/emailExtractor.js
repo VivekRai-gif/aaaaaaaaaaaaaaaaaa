@@ -1,4 +1,4 @@
-/**
+/** 
  * Email Extractor Service
  * Extracts email addresses from text using regex
  */

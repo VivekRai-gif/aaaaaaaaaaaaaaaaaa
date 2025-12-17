@@ -4,15 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApplyBotX - AI Job Application Automation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1">💼</div>
+            <div class="shape shape-2">📧</div>
+            <div class="shape shape-3">🎯</div>
+            <div class="shape shape-4">✨</div>
+            <div class="shape shape-5">🚀</div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>🤖 ApplyBotX</h1>
+                <div class="logo-container">
+                    <i class="fas fa-robot logo-icon"></i>
+                    <h1 class="glitch">ApplyBotX</h1>
+                </div>
                 <p class="tagline">AI-Powered Job Application Automation</p>
+                <div class="header-stats">
+                    <div class="stat-item bounce-in">
+                        <i class="fas fa-bolt"></i>
+                        <span>Lightning Fast</span>
+                    </div>
+                    <div class="stat-item bounce-in" style="animation-delay: 0.1s;">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-Powered</span>
+                    </div>
+                    <div class="stat-item bounce-in" style="animation-delay: 0.2s;">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure</span>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -22,26 +54,56 @@
         <div class="container">
             <!-- Info Cards -->
             <div class="info-cards">
-                <div class="info-card">
-                    <div class="card-icon">📄</div>
+                <div class="info-card card-hover-effect slide-in-left">
+                    <div class="card-icon-wrapper">
+                        <div class="card-glow"></div>
+                        <div class="card-icon">
+                            <i class="fas fa-file-upload pulse-icon"></i>
+                        </div>
+                    </div>
                     <h3>Upload Resume</h3>
                     <p>Submit your resume to save and parse your profile</p>
+                    <div class="card-footer">
+                        <span class="feature-badge"><i class="fas fa-check-circle"></i> Quick Upload</span>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <div class="card-icon">✉️</div>
+                <div class="info-card card-hover-effect slide-in-bottom" style="animation-delay: 0.2s;">
+                    <div class="card-icon-wrapper">
+                        <div class="card-glow"></div>
+                        <div class="card-icon">
+                            <i class="fas fa-paper-plane pulse-icon"></i>
+                        </div>
+                    </div>
                     <h3>Auto-Apply</h3>
                     <p>Add job details to generate and send application emails</p>
+                    <div class="card-footer">
+                        <span class="feature-badge"><i class="fas fa-magic"></i> Automated</span>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <div class="card-icon">🚀</div>
+                <div class="info-card card-hover-effect slide-in-right" style="animation-delay: 0.4s;">
+                    <div class="card-icon-wrapper">
+                        <div class="card-glow"></div>
+                        <div class="card-icon">
+                            <i class="fas fa-robot pulse-icon"></i>
+                        </div>
+                    </div>
                     <h3>AI-Powered</h3>
                     <p>Intelligent email generation tailored to each job</p>
+                    <div class="card-footer">
+                        <span class="feature-badge"><i class="fas fa-star"></i> Smart AI</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Application Form -->
-            <div class="form-container">
-                <h2>Submit Your Application</h2>
+            <div class="form-container scale-in">
+                <div class="form-header">
+                    <div class="form-icon-animate">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h2>Submit Your Application</h2>
+                    <p class="form-subtitle">Fill in the details below to get started with AI-powered job applications</p>
+                </div>
                 
                 <form id="applicationForm" enctype="multipart/form-data">
                     <!-- User Name -->
@@ -109,11 +171,12 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="btn-text">Submit Application</span>
+                    <button type="submit" class="submit-btn btn-shine" id="submitBtn">
+                        <span class="btn-text"><i class="fas fa-rocket"></i> Submit Application</span>
                         <span class="btn-loader" style="display: none;">
-                            <span class="spinner"></span> Processing...
+                            <span class="spinner"></span> Processing Magic...
                         </span>
+                        <div class="btn-particles"></div>
                     </button>
                 </form>
 
@@ -122,28 +185,51 @@
             </div>
 
             <!-- How It Works Section -->
-            <div class="how-it-works">
-                <h2>How It Works</h2>
+            <div class="how-it-works fade-in-up">
+                <div class="section-header">
+                    <h2><i class="fas fa-lightbulb"></i> How It Works</h2>
+                    <p class="section-subtitle">Four simple steps to automate your job applications</p>
+                </div>
                 <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Upload Resume</h3>
-                        <p>Submit your resume in PDF or DOC format</p>
+                    <div class="step step-animate">
+                        <div class="step-number-wrapper">
+                            <div class="step-number"><i class="fas fa-upload"></i></div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Upload Resume</h3>
+                            <p>Submit your resume in PDF or DOC format</p>
+                        </div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Add Job Details</h3>
-                        <p>Paste the job posting (optional for email automation)</p>
+                    <div class="step step-animate" style="animation-delay: 0.2s;">
+                        <div class="step-number-wrapper">
+                            <div class="step-number"><i class="fas fa-briefcase"></i></div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Add Job Details</h3>
+                            <p>Paste the job posting (optional for email automation)</p>
+                        </div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>AI Processing</h3>
-                        <p>AI generates professional application email</p>
+                    <div class="step step-animate" style="animation-delay: 0.4s;">
+                        <div class="step-number-wrapper">
+                            <div class="step-number"><i class="fas fa-cogs"></i></div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-content">
+                            <h3>AI Processing</h3>
+                            <p>AI generates professional application email</p>
+                        </div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Auto-Send</h3>
-                        <p>Email automatically sent to recruiter</p>
+                    <div class="step step-animate" style="animation-delay: 0.6s;">
+                        <div class="step-number-wrapper">
+                            <div class="step-number"><i class="fas fa-check-circle"></i></div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-content">
+                            <h3>Auto-Send</h3>
+                            <p>Email automatically sent to recruiter</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,10 +239,33 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>ApplyBotX - B.Tech CSE Mini Project</p>
-            <p>AI-Powered Job Application Automation System</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>🤖 ApplyBotX</h3>
+                    <p>AI-Powered Job Application Automation System</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with <i class="fas fa-heart pulse-heart"></i> for B.Tech CSE Project 2025</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

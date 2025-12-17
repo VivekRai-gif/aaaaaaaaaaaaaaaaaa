@@ -5,15 +5,20 @@
 
 require('dotenv').config();
 const { OpenAI } = require('openai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const AI_PROVIDER = process.env.AI_PROVIDER || 'openai';
 
-// Initialize OpenAI client
+// Initialize AI clients
 let openai;
-if (AI_PROVIDER === 'openai') {
+let gemini;
+
+if (AI_PROVIDER === 'openai' && process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here') {
   openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
+} else if (AI_PROVIDER === 'gemini' && process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key_here') {
+  gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 }
 
 /**
@@ -23,6 +28,11 @@ if (AI_PROVIDER === 'openai') {
  */
 const parseResumeWithAI = async (resumeText) => {
   try {
+    // Check if AI is configured
+    if (!openai && !gemini) {
+      throw new Error('AI service not configured. Please add API key to .env file');
+    }
+
     const prompt = `
 Analyze the following resume and extract:
 1. Key skills (list of technical and soft skills)
@@ -38,7 +48,7 @@ Respond in JSON format:
 }
 `;
 
-    if (AI_PROVIDER === 'openai') {
+    if (AI_PROVIDER === 'openai' && openai) {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
@@ -56,6 +66,17 @@ Respond in JSON format:
       });
 
       const content = response.choices[0].message.content;
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      }
+      
+      return { skills: [], experience: [] };
+    } else if (AI_PROVIDER === 'gemini' && gemini) {
+      const model = gemini.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+      const result = await model.generateContent(prompt);
+      const content = result.response.text();
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       
       if (jsonMatch) {
@@ -91,7 +112,7 @@ Based on the following information, generate a professional job application emai
 Candidate Name: ${userName}
 
 Resume:
-${resumeText.substring(0, 1500)} // Limit resume text to avoid token limits
+${resumeText.substring(0, 1500)}
 
 Job Posting:
 ${jobPost}
@@ -114,37 +135,77 @@ Respond in JSON format:
 }
 `;
 
-    if (AI_PROVIDER === 'openai') {
-      const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a professional job application email writer. Generate compelling application emails in JSON format.',
-          },
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 800,
-      });
+    if (AI_PROVIDER === 'openai' && openai) {
+      try {
+        const response = await openai.chat.completions.create({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a professional job application email writer. Generate compelling application emails in JSON format.',
+            },
+            {
+              role: 'user',
+              content: prompt,
+            },
+          ],
+          temperature: 0.7,
+          max_tokens: 800,
+        });
 
-      const content = response.choices[0].message.content;
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      
-      if (jsonMatch) {
-        return JSON.parse(jsonMatch[0]);
+        const content = response.choices[0].message.content;
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        
+        if (jsonMatch) {
+          return JSON.parse(jsonMatch[0]);
+        }
+      } catch (error) {
+        console.warn('OpenAI error, using fallback:', error.message);
       }
-      
-      throw new Error('Failed to parse AI response');
+    } else if (AI_PROVIDER === 'gemini' && gemini) {
+      try {
+        const model = gemini.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const result = await model.generateContent(prompt);
+        const content = result.response.text();
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        
+        if (jsonMatch) {
+          return JSON.parse(jsonMatch[0]);
+        }
+      } catch (error) {
+        console.warn('Gemini error, using fallback:', error.message);
+      }
     }
     
-    throw new Error('AI provider not configured');
+    // Fallback: Generate basic professional email without AI
+    console.log('⚠️  Using fallback email generation (AI unavailable)');
+    
+    // Extract job title from job post
+    const jobTitleMatch = jobPost.match(/(?:position|role|job)[\s:]*([^\n]+)/i);
+    const jobTitle = jobTitleMatch ? jobTitleMatch[1].trim() : 'the position';
+    
+    // Extract company name from job post  
+    const companyMatch = jobPost.match(/(?:at|@|company)[\s:]*([A-Z][a-zA-Z0-9\s&]+)/);
+    const company = companyMatch ? companyMatch[1].trim().split(/\s+(is|in|for|with)/)[0] : 'your company';
+    
+    return {
+      subject: `Application for ${jobTitle} - ${userName}`,
+      body: `Dear Hiring Manager,
+
+I am writing to express my strong interest in ${jobTitle} at ${company}. With my background and skills, I am confident I would be a valuable addition to your team.
+
+My experience and qualifications align well with the requirements outlined in your job posting. I am particularly excited about the opportunity to contribute to ${company} and grow professionally within your organization.
+
+I have attached my resume for your review. I would welcome the opportunity to discuss how my skills and experience can benefit ${company}. Thank you for considering my application.
+
+I look forward to hearing from you soon.
+
+Best regards,
+${userName}`
+    };
     
   } catch (error) {
-    console.error('Error generating email with AI:', error.message);
+    console.error('Error generating email:', error.message);
     throw new Error('Failed to generate email with AI');
   }
 };

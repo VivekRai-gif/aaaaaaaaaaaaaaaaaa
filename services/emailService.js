@@ -3,7 +3,7 @@
  * Handles email sending functionality using Nodemailer
  */
 
-const { createTransporter } = require('../config/email');
+const { createTransporter, isEmailConfigured } = require('../config/email');
 
 /**
  * Send job application email to recruiter
@@ -24,8 +24,17 @@ const sendJobApplicationEmail = async (emailData) => {
       throw new Error('Missing required email fields (to, subject, body)');
     }
 
+    // Check if email is configured
+    if (!isEmailConfigured()) {
+      throw new Error('Email not configured. Please set up Gmail App Password in .env file');
+    }
+
     // Create transporter
     const transporter = createTransporter();
+    
+    if (!transporter) {
+      throw new Error('Failed to create email transporter');
+    }
 
     // Email options
     const mailOptions = {
@@ -64,12 +73,26 @@ const sendJobApplicationEmail = async (emailData) => {
  */
 const verifyEmailConfig = async () => {
   try {
+    if (!isEmailConfigured()) {
+      console.warn('⚠️  Gmail credentials not configured in .env file');
+      console.warn('⚠️  Email sending features will be disabled');
+      return false;
+    }
+
     const transporter = createTransporter();
+    
+    if (!transporter) {
+      console.warn('⚠️  Failed to create email transporter');
+      console.warn('⚠️  Email sending features will be disabled');
+      return false;
+    }
+
     await transporter.verify();
-    console.log('✅ Email configuration verified');
+    console.log('✅ Email configuration verified successfully');
     return true;
   } catch (error) {
-    console.error('❌ Email configuration error:', error.message);
+    console.warn('⚠️  Email configuration error:', error.message);
+    console.warn('⚠️  Email sending features will be disabled');
     return false;
   }
 };
