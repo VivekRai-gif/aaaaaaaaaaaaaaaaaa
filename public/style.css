@@ -161,7 +161,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 60px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 
-                0 0 0 1px rgba(139, 92, 246, 0.1),
+                0 0 0 1px rgba(212, 175, 55, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
     z-index: 1000;
     padding: 16px 48px;
@@ -217,7 +217,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary-purple), var(--primary-pink));
+    background: linear-gradient(90deg, var(--thai-gold), var(--thai-gold-light));
     transition: width 0.3s ease;
 }
 
@@ -313,9 +313,9 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(139, 92, 246, 0.2);
+    background: rgba(212, 175, 55, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 8px 20px;
     border-radius: 50px;
     font-size: 14px;
@@ -373,7 +373,7 @@ body {
 
 .btn-primary {
     background: var(--text-light);
-    color: var(--primary-purple);
+    color: var(--thai-gold);
     font-weight: 700;
     box-shadow: var(--shadow-md);
     position: relative;
@@ -435,7 +435,7 @@ body {
 }
 
 .stat:hover .stat-number {
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+    background: linear-gradient(135deg, var(--thai-gold), var(--thai-gold-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -497,7 +497,7 @@ body {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
     background-image: linear-gradient(rgba(26, 26, 46, 0.6), rgba(26, 26, 46, 0.6)), 
-                      linear-gradient(135deg, rgba(82, 39, 255, 0.3), rgba(236, 72, 153, 0.3));
+                      linear-gradient(135deg, rgba(82, 39, 255, 0.3), rgba(245, 197, 24, 0.3));
     background-origin: border-box;
     background-clip: padding-box, border-box;
     position: relative;
@@ -513,8 +513,8 @@ body {
     bottom: 0;
     background: linear-gradient(135deg, 
                 rgba(82, 39, 255, 0.05) 0%, 
-                rgba(236, 72, 153, 0.05) 50%,
-                rgba(139, 92, 246, 0.05) 100%);
+                rgba(245, 197, 24, 0.05) 50%,
+                rgba(212, 175, 55, 0.05) 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 0;
@@ -529,7 +529,7 @@ body {
 .feature-card:hover {
     transform: translateY(-12px) scale(1.02);
     box-shadow: 0 20px 60px rgba(82, 39, 255, 0.3),
-                0 0 40px rgba(236, 72, 153, 0.2),
+                0 0 40px rgba(245, 197, 24, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-color: rgba(82, 39, 255, 0.5);
     background: rgba(26, 26, 46, 0.85);
@@ -547,7 +547,7 @@ body {
 .feature-icon {
     width: 64px;
     height: 64px;
-    background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+    background: linear-gradient(135deg, var(--thai-gold), var(--thai-gold-light));
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -602,26 +602,26 @@ body {
 }
 
 .tab-btn:hover {
-    border-color: var(--primary-purple);
+    border-color: var(--thai-gold);
     transform: translateY(-3px) scale(1.05);
     background: rgba(26, 26, 46, 0.8);
     box-shadow: 0 8px 25px rgba(82, 39, 255, 0.3);
 }
 
 .tab-btn.active {
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     color: var(--text-light);
     border-color: transparent;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
     }
     50% {
-        box-shadow: 0 4px 30px rgba(139, 92, 246, 0.6);
+        box-shadow: 0 4px 30px rgba(212, 175, 55, 0.6);
     }
 }
 
@@ -667,7 +667,7 @@ body {
 }
 
 .form-header h3 i {
-    color: var(--primary-purple);
+    color: var(--thai-gold);
 }
 
 .form-header p {
@@ -702,7 +702,7 @@ body {
 }
 
 .form-group label i {
-    color: var(--primary-purple);
+    color: var(--thai-gold);
 }
 
 .form-group input,
@@ -725,8 +725,8 @@ body {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-purple);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    border-color: var(--thai-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 .form-hint {
@@ -764,17 +764,17 @@ body {
 }
 
 .file-upload-label:hover {
-    border-color: var(--primary-purple);
-    background: rgba(139, 92, 246, 0.1);
+    border-color: var(--thai-gold);
+    background: rgba(212, 175, 55, 0.1);
 }
 
 .file-upload-label i {
     font-size: 24px;
-    color: var(--primary-purple);
+    color: var(--thai-gold);
 }
 
 .btn-submit {
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     color: var(--text-light);
     padding: 16px;
     border-radius: 50px;
@@ -846,15 +846,15 @@ body {
 .telegram-hero {
     text-align: center;
     padding: 48px;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(245, 197, 24, 0.15) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: var(--border-radius);
 }
 
 .telegram-icon-large {
     width: 120px;
     height: 120px;
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -881,7 +881,7 @@ body {
 }
 
 .btn-telegram-large {
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     color: var(--text-light);
     padding: 18px 48px;
     border-radius: 50px;
@@ -936,7 +936,7 @@ body {
 .step-number {
     width: 64px;
     height: 64px;
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -986,7 +986,7 @@ body {
 
 .tg-feature i {
     font-size: 36px;
-    color: var(--primary-purple);
+    color: var(--thai-gold);
     margin-bottom: 16px;
 }
 
@@ -1022,7 +1022,7 @@ body {
     transform: translateX(-50%);
     width: 3px;
     height: 100%;
-    background: linear-gradient(180deg, var(--primary-purple) 0%, var(--primary-pink) 100%);
+    background: linear-gradient(180deg, var(--thai-gold) 0%, var(--thai-gold-light) 100%);
 }
 
 .timeline-item {
@@ -1043,7 +1043,7 @@ body {
 .timeline-icon {
     width: 80px;
     height: 80px;
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1107,7 +1107,7 @@ footer {
 }
 
 .footer-section h3 i {
-    color: var(--primary-purple);
+    color: var(--thai-gold);
 }
 
 .footer-section h4 {
@@ -1137,14 +1137,14 @@ footer {
 }
 
 .footer-section ul li a:hover {
-    color: var(--primary-purple);
+    color: var(--thai-gold);
 }
 
 .footer-telegram {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     color: var(--text-light);
     padding: 10px 20px;
     border-radius: 50px;
@@ -1177,9 +1177,9 @@ footer {
 }
 
 .social-links a:hover {
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
 
 .footer-bottom {
@@ -1201,7 +1201,7 @@ footer {
     right: 32px;
     width: 56px;
     height: 56px;
-    background: var(--gradient-bg);
+    background: var(--gradient-gold);
     color: var(--text-light);
     border: none;
     border-radius: 50%;
