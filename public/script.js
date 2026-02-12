@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   try {
     console.log('✅ Creating LiquidEther instance...');
     liquidEther = new LiquidEther('liquid-ether-bg', {
-      colors: ['#5227FF', '#FF9FFC', '#B19EEF', '#8B5CF6', '#EC4899'],
+      colors: ['#D4AF37', '#F5C518', '#0F3057', '#1E2A3A', '#B8941F'],
       mouseForce: 35,
       cursorSize: 150,
       isViscous: false,
@@ -45,6 +45,42 @@ document.addEventListener('DOMContentLoaded', function() {
   } catch (error) {
     console.error('❌ Error initializing fluid background:', error);
   }
+  
+  // Animated Stat Counters
+  animateStats();
+});
+
+// Animated Stats Counter Function
+function animateStats() {
+  const stats = document.querySelectorAll('.stat-number');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const text = target.textContent;
+        const isPercentage = text.includes('%');
+        const isPlusSign = text.includes('+');
+        const number = parseInt(text.replace(/[^0-9]/g, ''));
+        
+        let current = 0;
+        const increment = number / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= number) {
+            target.textContent = number + (isPercentage ? '%' : '') + (isPlusSign ? '+' : '');
+            clearInterval(timer);
+          } else {
+            target.textContent = Math.floor(current) + (isPercentage ? '%' : '') + (isPlusSign ? '+' : '');
+          }
+        }, 30);
+        
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  stats.forEach(stat => observer.observe(stat));
 });
 
 // DOM Elements
